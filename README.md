@@ -5,6 +5,24 @@ This is simple demo to demonstrate RealmSwift as an alternative to coredata.
 
 This explains the simple data relationship.
 
+
+
+ #### DataModel
+ This is the model for department.
+    class Department: Object{
+    
+    dynamic var id:Int = 0
+    dynamic var name:String = ""
+    
+    var staffs = LinkingObjects(fromType: Staff.self, property: "department")
+    
+    override static func primaryKey() -> String? {
+        return "id"
+    }
+    
+}
+ 
+
  #### Saves department
 
     class func saveDepartment(newDepartment: Department){
