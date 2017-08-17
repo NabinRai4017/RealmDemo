@@ -5,7 +5,7 @@ This is simple demo to demonstrate RealmSwift as an alternative to coredata.
 
 This explains the simple data relationship.
 
- ### saves department
+ #### Saves department
 
     class func saveDepartment(newDepartment: Department){
         let depart = Department()
@@ -23,7 +23,7 @@ This explains the simple data relationship.
     }
     
     
- ### gets all departments
+ #### Gets all departments
  
  
      class func getAllDepartments() ->  Results<Department>?{
@@ -39,7 +39,7 @@ This explains the simple data relationship.
         return nil
      }
 
-### update the existing department
+#### Update the existing department
  
       class func updateDepartment(OldDepartment: Department, newDepartment:Department){
         
@@ -55,7 +55,7 @@ This explains the simple data relationship.
         }
      }
 
- ### delete only one department related to id
+ #### Delete only one department related to id
  
      class func deleteDepartment(id: Int){
         print(id)
@@ -75,7 +75,7 @@ This explains the simple data relationship.
     
     
     
-### delete all departments
+#### delete all departments
     
         class func deleteAllDepartment(){
         
