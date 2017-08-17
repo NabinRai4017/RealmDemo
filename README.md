@@ -9,18 +9,19 @@ This explains the simple data relationship.
 
  #### DataModel
  This is the model for department.
-    class Department: Object{
+ 
+     class Department: Object{
+     
+       dynamic var id:Int = 0
+       dynamic var name:String = ""
     
-    dynamic var id:Int = 0
-    dynamic var name:String = ""
+       var staffs = LinkingObjects(fromType: Staff.self, property: "department")
     
-    var staffs = LinkingObjects(fromType: Staff.self, property: "department")
+       override static func primaryKey() -> String? {
+            return "id"
+       }
     
-    override static func primaryKey() -> String? {
-        return "id"
-    }
-    
-}
+     }
  
 
  #### Saves department
