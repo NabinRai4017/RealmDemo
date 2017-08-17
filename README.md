@@ -75,7 +75,7 @@ This explains the simple data relationship.
     
     
     
-#### delete all departments
+#### Delete all departments
     
         class func deleteAllDepartment(){
         
