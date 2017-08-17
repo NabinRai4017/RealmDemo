@@ -6,6 +6,7 @@ This is simple demo to demonstrate RealmSwift as an alternative to coredata.
 This explains the simple data relationship.
 
 // saves department
+
     class func saveDepartment(newDepartment: Department){
         let depart = Department()
         depart.name = newDepartment.name
@@ -21,9 +22,12 @@ This explains the simple data relationship.
         }
     }
     
+    
  // gets all departments
-   class func getAllDepartments() ->  Results<Department>?{
-        
+ 
+ 
+     class func getAllDepartments() ->  Results<Department>?{
+   
         do{
             let realm = try Realm()
             let departments = realm.objects(Department.self)
@@ -33,10 +37,11 @@ This explains the simple data relationship.
             print(error)
         }
         return nil
-    }
+     }
 
  // update the existing department
-   class func updateDepartment(OldDepartment: Department, newDepartment:Department){
+ 
+      class func updateDepartment(OldDepartment: Department, newDepartment:Department){
         
         do{
             let realm = try Realm()
@@ -48,10 +53,11 @@ This explains the simple data relationship.
         }catch let error as NSError{
             print(error)
         }
-    }
+     }
 
  // delete only one department related to id
-   class func deleteDepartment(id: Int){
+ 
+     class func deleteDepartment(id: Int){
         print(id)
         do {
             let realm = try Realm()
@@ -65,23 +71,25 @@ This explains the simple data relationship.
             print(error)
         }
         
-    }
+     }
     
     
-      // delete all departments
-   class func deleteAllDepartment(){
+    
+// delete all departments
+    
+        class func deleteAllDepartment(){
         
-        do {
-            let realm = try Realm()
-            try realm.write {
+             do {
+                let realm = try Realm()
+                try realm.write {
                 let departToDelete = realm.objects(Department.self)
                 realm.delete(departToDelete)
             }
             
-        } catch let error as NSError {
-            print(error)
+            } catch let error as NSError {
+                print(error)
+            }
         }
-    }
 
 
 
