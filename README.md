@@ -5,6 +5,86 @@ This is simple demo to demonstrate RealmSwift as an alternative to coredata.
 
 This explains the simple data relationship.
 
+// saves department
+    class func saveDepartment(newDepartment: Department){
+        let depart = Department()
+        depart.name = newDepartment.name
+        depart.id = newDepartment.id
+        depart.staffs = newDepartment.staffs
+        do {
+            let realm = try Realm()
+            try realm.write {
+                realm.add(depart)
+            }
+        } catch let error as NSError {
+            print(error)
+        }
+    }
+    
+ // gets all departments
+   class func getAllDepartments() ->  Results<Department>?{
+        
+        do{
+            let realm = try Realm()
+            let departments = realm.objects(Department.self)
+            return departments
+            
+        }catch let error as NSError{
+            print(error)
+        }
+        return nil
+    }
+
+ // update the existing department
+   class func updateDepartment(OldDepartment: Department, newDepartment:Department){
+        
+        do{
+            let realm = try Realm()
+            let department = realm.objects(Department.self).filter("id == \(OldDepartment.id)").first
+            try realm.write {
+                department?.id = newDepartment.id
+                department?.name = newDepartment.name
+            }
+        }catch let error as NSError{
+            print(error)
+        }
+    }
+
+ // delete only one department related to id
+   class func deleteDepartment(id: Int){
+        print(id)
+        do {
+            let realm = try Realm()
+            try realm.write {
+                if let departToDelete = realm.object(ofType: Department.self, forPrimaryKey: id){
+                    realm.delete(departToDelete)
+                }
+            }
+            
+        } catch let error as NSError {
+            print(error)
+        }
+        
+    }
+    
+    
+      // delete all departments
+   class func deleteAllDepartment(){
+        
+        do {
+            let realm = try Realm()
+            try realm.write {
+                let departToDelete = realm.objects(Department.self)
+                realm.delete(departToDelete)
+            }
+            
+        } catch let error as NSError {
+            print(error)
+        }
+    }
+
+
+
 Here is guide https://realm.io/docs/swift/latest/
 
 Output of this demo project.
