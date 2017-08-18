@@ -9,7 +9,7 @@ This explains the simple data relationship.
 
  #### DataModel
  
- This is the model for Staff.
+ This is the model for staff.
  
      class Staff: Object{
 
