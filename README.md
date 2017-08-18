@@ -8,6 +8,28 @@ This explains the simple data relationship.
 
 
  #### DataModel
+ 
+ This is the model for Staff.
+ 
+     class Staff: Object{
+
+        // for option declaration for int, bool etc except String
+        //var id = RealmOptional<Int32>()
+        dynamic var id:Int = 0
+        dynamic var fullName: String?
+        dynamic var phoneNumber: String?
+        // to creat inverse relation
+        // one to one relationship
+        dynamic var department: Department?
+
+        override static func primaryKey() -> String? {
+            return "id"
+        }
+
+     }
+
+ 
+ 
  This is the model for department.
  
      class Department: Object{
@@ -22,24 +44,43 @@ This explains the simple data relationship.
        }
     
      }
+     
+     
+ #### Relationship
+ 
+ For many-to-one or one-to-one relationships, simply declare a property with the type of your Object subclass:
+ 
+ Eg. In staff, we have 
+   //to-one relationships must be optional
+ 
+       dynamic var department: Department?
+       
+Similarly, Realm provides linking objects properties to represent inverse relationships.With linking objects properties, you can obtain all objects that link to a given object from a specific property. 
+ 
+Eg. In Department, we have
+
+       var staffs = LinkingObjects(fromType: Staff.self, property: "department")
+        
+A department object can have a property named staffs that contains all of the staff objects that have this exact department object in their staff property.
+
  
 
  #### Saves department
 
-    class func saveDepartment(newDepartment: Department){
-        let depart = Department()
-        depart.name = newDepartment.name
-        depart.id = newDepartment.id
-        depart.staffs = newDepartment.staffs
-        do {
-            let realm = try Realm()
-            try realm.write {
-                realm.add(depart)
-            }
-        } catch let error as NSError {
-            print(error)
-        }
-    }
+     class func saveDepartment(newDepartment: Department){
+         let depart = Department()
+         depart.name = newDepartment.name
+         depart.id = newDepartment.id
+         depart.staffs = newDepartment.staffs
+         do {
+             let realm = try Realm()
+             try realm.write {
+                 realm.add(depart)
+             }
+         } catch let error as NSError {
+             print(error)
+         }
+     }
     
     
  #### Gets all departments
