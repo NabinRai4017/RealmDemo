@@ -49,6 +49,7 @@ This explains the simple data relationship.
  For many-to-one or one-to-one relationships, simply declare a property with the type of your Object subclass:
  
  Eg. In staff, we have 
+ 
    //to-one relationships must be optional
  
        dynamic var department: Department?
