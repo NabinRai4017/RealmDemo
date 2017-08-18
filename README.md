@@ -13,13 +13,11 @@ This explains the simple data relationship.
  
      class Staff: Object{
 
-        // for option declaration for int, bool etc except String
-        //var id = RealmOptional<Int32>()
+       
         dynamic var id:Int = 0
         dynamic var fullName: String?
         dynamic var phoneNumber: String?
-        // to creat inverse relation
-        // one to one relationship
+        
         dynamic var department: Department?
 
         override static func primaryKey() -> String? {
