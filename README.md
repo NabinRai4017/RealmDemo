@@ -106,7 +106,8 @@ A department object can have a property named staffs that contains all of the st
             let realm = try Realm()
             let department = realm.objects(Department.self).filter("id == \(OldDepartment.id)").first
             try realm.write {
-                department?.id = newDepartment.id
+                // id should not be changed as it assigned as primary
+                //realm doesn't allow you to change primary key
                 department?.name = newDepartment.name
             }
         }catch let error as NSError{
